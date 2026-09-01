@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", "Helvetica Neue", Arial, sans-serif;
+  --color-cream: #f5f0eb;
+  --color-ink: #1a1a1a;
+  --color-muted: #6b6b6b;
+  --color-border: #e0dbd5;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-cream text-ink antialiased;
+}
+
+::selection {
+  @apply bg-ink text-cream;
+}
