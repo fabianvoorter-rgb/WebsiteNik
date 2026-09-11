@@ -1,8 +1,17 @@
 import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 
-const linkClass = ({ isActive }) =>
-  `transition-colors hover:text-ink ${isActive ? 'text-ink' : 'text-muted'}`
+const navItems = [
+  { to: '/logos', label: 'Work', icon: '/work.png' },
+  { to: '/comics', label: 'Comics', icon: '/shop.png' },
+]
+
+const externalItems = [
+  { href: 'mailto:nikheemskerk@gmail.com', label: 'Contact', icon: '/contact.png' },
+  { href: 'https://www.instagram.com/nikheemskerk/', label: 'Instagram', icon: '/instagram.png', external: true },
+]
+
+const iconClass = 'h-7 w-auto opacity-75 transition-all duration-200 hover:scale-105 hover:opacity-100'
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
@@ -11,25 +20,37 @@ export default function Navbar() {
     <>
       <header className="fixed top-0 left-0 right-0 z-50 bg-cream/90 backdrop-blur-sm">
         <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
-          <NavLink to="/" className="text-lg font-bold tracking-tight uppercase" onClick={() => setOpen(false)}>
-            Nik Heemskerk
+          <NavLink to="/" className="block" onClick={() => setOpen(false)}>
+            <img src="/home.png" alt="Nik Heemskerk" className="h-7 w-auto opacity-90 transition-all duration-200 hover:opacity-100" />
           </NavLink>
 
           {/* Desktop nav */}
-          <ul className="hidden items-center gap-8 text-sm font-medium uppercase tracking-widest md:flex">
-            <li><NavLink to="/" className={linkClass}>Work</NavLink></li>
-            <li><NavLink to="/comics" className={linkClass}>Comics</NavLink></li>
-            <li><NavLink to="/logos" className={linkClass}>Logo&apos;s</NavLink></li>
-            <li>
-              <a href="mailto:nikheemskerk@gmail.com" className="text-muted transition-colors hover:text-ink">
-                Contact
-              </a>
-            </li>
-            <li>
-              <a href="https://www.instagram.com/nikheemskerk/" target="_blank" rel="noopener noreferrer" className="text-muted transition-colors hover:text-ink">
-                Instagram
-              </a>
-            </li>
+          <ul className="hidden items-center gap-6 md:flex">
+            {navItems.map((item) => (
+              <li key={item.to}>
+                <NavLink to={item.to} className="block" onClick={() => setOpen(false)}>
+                  {({ isActive }) => (
+                    <img
+                      src={item.icon}
+                      alt={item.label}
+                      className={`${iconClass} ${isActive ? 'opacity-100' : ''}`}
+                    />
+                  )}
+                </NavLink>
+              </li>
+            ))}
+            {externalItems.map((item) => (
+              <li key={item.href}>
+                <a
+                  href={item.href}
+                  target={item.external ? '_blank' : undefined}
+                  rel={item.external ? 'noopener noreferrer' : undefined}
+                  className="block"
+                >
+                  <img src={item.icon} alt={item.label} className={iconClass} />
+                </a>
+              </li>
+            ))}
           </ul>
 
           {/* Hamburger button */}
@@ -48,16 +69,30 @@ export default function Navbar() {
       {/* Mobile menu overlay: rendered outside <header> since backdrop-blur there would
           create a containing block and break this element's fixed positioning */}
       {open && (
-        <div className="fixed inset-0 z-40 flex flex-col items-center justify-center gap-6 overflow-y-auto bg-cream px-6 py-24 text-lg font-medium uppercase tracking-widest md:hidden">
-          <NavLink to="/" className={linkClass} onClick={() => setOpen(false)}>Work</NavLink>
-          <NavLink to="/comics" className={linkClass} onClick={() => setOpen(false)}>Comics</NavLink>
-          <NavLink to="/logos" className={linkClass} onClick={() => setOpen(false)}>Logo&apos;s</NavLink>
-          <a href="mailto:nikheemskerk@gmail.com" className="text-muted transition-colors hover:text-ink" onClick={() => setOpen(false)}>
-            Contact
-          </a>
-          <a href="https://www.instagram.com/nikheemskerk/" target="_blank" rel="noopener noreferrer" className="text-muted transition-colors hover:text-ink" onClick={() => setOpen(false)}>
-            Instagram
-          </a>
+        <div className="fixed inset-0 z-40 flex flex-col items-center justify-center gap-8 overflow-y-auto bg-cream px-6 py-24 md:hidden">
+          {navItems.map((item) => (
+            <NavLink key={item.to} to={item.to} className="block" onClick={() => setOpen(false)}>
+              {({ isActive }) => (
+                <img
+                  src={item.icon}
+                  alt={item.label}
+                  className={`h-10 w-auto transition-all duration-200 ${isActive ? 'opacity-100' : 'opacity-80 hover:opacity-100'}`}
+                />
+              )}
+            </NavLink>
+          ))}
+          {externalItems.map((item) => (
+            <a
+              key={item.href}
+              href={item.href}
+              target={item.external ? '_blank' : undefined}
+              rel={item.external ? 'noopener noreferrer' : undefined}
+              className="block"
+              onClick={() => setOpen(false)}
+            >
+              <img src={item.icon} alt={item.label} className="h-10 w-auto opacity-80 transition-all duration-200 hover:opacity-100" />
+            </a>
+          ))}
         </div>
       )}
     </>
