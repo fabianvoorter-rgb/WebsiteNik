@@ -10,6 +10,17 @@ export default function App() {
     <div className="flex min-h-screen flex-col">
       <Navbar />
       <div className="flex-1">
+        <div className="hidden justify-center px-6 pt-24 pb-2 md:flex lg:hidden">
+          <video
+            src="/snail.mov"
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="h-24 w-auto"
+            aria-label="Animated snail"
+          />
+        </div>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/comics" element={<Comics />} />
