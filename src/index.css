@@ -19,3 +19,38 @@ body {
 ::selection {
   @apply bg-ink text-cream;
 }
+
+.snail-traveler {
+  position: relative;
+  width: 10rem;
+  height: 6rem;
+  mix-blend-mode: multiply;
+  animation: snail-travel 90s linear infinite;
+}
+
+.snail-video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  animation: snail-turn 90s steps(1, end) infinite;
+}
+
+@keyframes snail-travel {
+  0%, 100% {
+    left: 0;
+  }
+  50% {
+    left: calc(100% - 10rem);
+  }
+}
+
+@keyframes snail-turn {
+  0%, 100% {
+    transform: scaleX(1);
+  }
+  50% {
+    transform: scaleX(-1);
+  }
+}
+

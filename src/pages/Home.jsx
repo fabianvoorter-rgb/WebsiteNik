@@ -32,7 +32,7 @@ const illustrations = [
 
 export default function Home() {
   return (
-    <main className="mx-auto max-w-6xl px-6 pt-28 pb-16">
+    <main className="mx-auto max-w-6xl px-6 pb-16">
       <ImageGrid images={illustrations} />
     </main>
   )
