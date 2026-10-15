@@ -1,6 +1,6 @@
 export default function Comics() {
   return (
-    <main className="mx-auto max-w-4xl px-6 pt-28 pb-16">
+    <main className="mx-auto max-w-4xl px-6 pb-16">
       {/* Vis op het Droge */}
       <section className="mb-24">
         <div className="mb-8 flex flex-col items-center gap-8 md:flex-row md:items-start">
