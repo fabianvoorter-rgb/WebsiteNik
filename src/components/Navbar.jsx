@@ -2,13 +2,12 @@ import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 
 const navItems = [
-  { to: '/logos', label: 'Work', icon: '/work.png' },
-  { to: '/comics', label: 'Comics', icon: '/shop.png' },
+  { to: '/comics', label: 'Comics', icon: `${import.meta.env.BASE_URL}shop.png` },
 ]
 
 const externalItems = [
-  { href: 'mailto:nikheemskerk@gmail.com', label: 'Contact', icon: '/contact.png' },
-  { href: 'https://www.instagram.com/nikheemskerk/', label: 'Instagram', icon: '/instagram.png', external: true },
+  { href: 'mailto:nikheemskerk@gmail.com', label: 'Contact', icon: `${import.meta.env.BASE_URL}contact.png` },
+  { href: 'https://www.instagram.com/nikheemskerk/', label: 'Instagram', icon: `${import.meta.env.BASE_URL}instagram.png`, external: true },
 ]
 
 const iconClass = 'h-7 w-auto opacity-75 transition-all duration-200 hover:scale-105 hover:opacity-100'
@@ -21,7 +20,7 @@ export default function Navbar() {
       <header className="fixed top-0 left-0 right-0 z-50 bg-cream/90 backdrop-blur-sm">
         <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
           <NavLink to="/" className="block" onClick={() => setOpen(false)}>
-            <img src="/home.png" alt="Nik Heemskerk" className="h-7 w-auto opacity-90 transition-all duration-200 hover:opacity-100" />
+            <img src={`${import.meta.env.BASE_URL}home.png`} alt="Nik Heemskerk" className="h-7 w-auto opacity-90 transition-all duration-200 hover:opacity-100" />
           </NavLink>
 
           {/* Desktop nav */}

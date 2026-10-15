@@ -12,7 +12,7 @@ export default function App() {
       <div className="flex-1">
         <div className="hidden justify-center px-6 pt-24 pb-2 md:flex lg:hidden">
           <video
-            src="/snail.mov"
+            src={`${import.meta.env.BASE_URL}snail.mov`}
             autoPlay
             loop
             muted
