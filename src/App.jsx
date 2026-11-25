@@ -10,7 +10,7 @@ export default function App() {
     <div className="flex min-h-screen flex-col">
       <Navbar />
       <div className="flex-1">
-        <div className="mx-auto hidden max-w-6xl overflow-hidden px-6 pt-24 pb-2 md:block">
+        <div className="mx-auto hidden max-w-7xl overflow-hidden px-6 pt-28 pb-2 md:block">
           <div className="snail-traveler">
             <video
               src={`${import.meta.env.BASE_URL}snail.mov`}

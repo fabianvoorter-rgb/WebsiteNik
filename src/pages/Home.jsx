@@ -1,38 +1,64 @@
 import ImageGrid from '../components/ImageGrid'
 
+const base = import.meta.env.BASE_URL
+
+// 800px thumbnail for the grid, 1800px for the lightbox
+const local = (name, width, height, alt = '') => ({
+  src: `${base}illustrations/${name}-800.webp`,
+  full: `${base}illustrations/${name}-1800.webp`,
+  width,
+  height,
+  alt,
+})
+
 const illustrations = [
-  { src: 'https://freight.cargo.site/w/700/i/F2093530267216245843818393495907/koffietcacao_nik-scaled.jpg', alt: 'Koffie & Cacao illustration' },
-  { src: 'https://freight.cargo.site/w/700/i/O2096423858558908408206736877923/insta.jpg', alt: 'Instagram illustration' },
-  { src: 'https://freight.cargo.site/w/700/i/J2096537831361339453049786198371/burnout-final-2.jpg', alt: 'Burnout illustration' },
-  { src: 'https://freight.cargo.site/w/700/i/W2096423858429781199690770016611/gentsegek-insta-scaled.jpg', alt: 'Gentse Gek illustration' },
-  { src: 'https://freight.cargo.site/w/700/i/Y2096423859093863986344313874787/voorinternet-vuilnisman-scaled.jpg', alt: 'Vuilnisman illustration' },
-  { src: 'https://freight.cargo.site/w/700/i/J2096423858909396545607218358627/restart.jpg', alt: 'Restart illustration' },
-  { src: 'https://freight.cargo.site/w/700/i/S2096423858780269337091251497315/N-1-1-scaled.jpg', alt: 'N illustration' },
-  { src: 'https://freight.cargo.site/w/700/i/H2096423858669588872648994187619/krraks3voointernet.jpg', alt: 'Krraks illustration' },
-  { src: 'https://freight.cargo.site/w/700/i/T2096423858595801896354155981155/kattenkwaat22-scaled.jpg', alt: 'Kattenkwaad illustration' },
-  { src: 'https://freight.cargo.site/w/700/i/T2096423859149204218565442529635/wolfworms-2-M-2.jpg', alt: 'Wolfworms illustration' },
-  { src: 'https://freight.cargo.site/w/700/i/B2096535766561935050518545164643/voor-paulo.jpg', alt: 'Voor Paulo illustration' },
-  { src: 'https://freight.cargo.site/w/700/i/U2096423859001630265975766116707/the-brabanter3-scaled.jpg', alt: 'The Brabanter illustration' },
-  { src: 'https://freight.cargo.site/w/700/i/O2093530267179352355670974392675/friesetaal-Groot.jpg', alt: 'Friese Taal illustration' },
-  { src: 'https://freight.cargo.site/w/700/i/Q2096423858651142128575284636003/koriander-scaled.jpg', alt: 'Koriander illustration' },
-  { src: 'https://freight.cargo.site/w/700/i/C2096423859038523754123185219939/voorinstaoo-scaled.jpg', alt: 'Illustration' },
-  { src: 'https://freight.cargo.site/w/700/i/B2096423858854056313386089703779/paradiso.jpg', alt: 'Paradiso illustration' },
-  { src: 'https://freight.cargo.site/w/700/i/M2096423858688035616722703739235/laatstebom22a-scaled.jpg', alt: 'Laatste Bom illustration' },
-  { src: 'https://freight.cargo.site/w/700/i/Q2096423858614248640427865532771/kikkersvoorinterent.jpg', alt: 'Kikkers illustration' },
-  { src: 'https://freight.cargo.site/w/700/i/N2096423858890949801533508807011/republiek-test-scaled.jpg', alt: 'Republiek illustration' },
-  { src: 'https://freight.cargo.site/w/700/i/A2096423858872503057459799255395/raum-poster-nog-meer.jpg', alt: 'Raum Poster illustration' },
-  { src: 'https://freight.cargo.site/w/700/i/J2096423858761822593017541945699/medusa5a-scaled.jpg', alt: 'Medusa illustration' },
-  { src: 'https://freight.cargo.site/w/700/i/H2096423858964736777828347013475/spook.jpg', alt: 'Spook illustration' },
-  { src: 'https://freight.cargo.site/w/700/i/W2096423859056970498196894771555/voorinsta-scaled.jpg', alt: 'Illustration' },
-  { src: 'https://freight.cargo.site/w/700/i/Q2096423858927843289680927910243/S.jpg', alt: 'S illustration' },
-  { src: 'https://freight.cargo.site/w/700/i/G2096423858835609569312380152163/papiaments-4.jpg', alt: 'Papiaments illustration' },
-  { src: 'https://freight.cargo.site/w/700/i/S2096423858724929104870122842467/leugenwedstrijd_kleeur-scaled.jpg', alt: 'Leugenwedstrijd illustration' },
-  { src: 'https://freight.cargo.site/w/700/i/F2096423858983183521902056565091/testpersoonhardhoofd-scaled.jpg', alt: 'Hardhoofd illustration' },
+  local('2-jpg', 1273, 1800),
+  local('3-png', 1800, 1012),
+  local('2-png', 1800, 678),
+  local('burnout-final-2-jpg', 1414, 1800, 'Burnout illustration'),
+  local('gentsegek-jpg', 1273, 1800, 'Gentse Gek illustration'),
+  local('friesetaal', 1800, 1601, 'Friese Taal illustration'),
+  local('uitstervende-taal-5b', 1800, 1576),
+  local('vrijnederland-cover', 1350, 1800, 'Vrij Nederland cover'),
+  local('voor-nimeto-jpg', 1510, 1800),
+  local('spread-cmyk-jpg', 1800, 1149),
+  local('cafe-heeswijk-jpg', 1800, 1236, 'Café Heeswijk illustration'),
+  local('aminozuren-proefschrift-print-zondergelelijn', 1800, 1271),
+  local('kerndoelennederlands-a-jpg', 1800, 1285),
+  local('more-edpresso-les-depresso-insta-jpg', 1221, 1800),
+  local('hopsterslak2insta-png', 1240, 877),
+  local('voorinsta-jpg', 1273, 1800),
+  local('voorinsta-png', 1800, 1277),
+  local('wobby-niklayers-1', 1246, 1800),
+  local('wobby-niklayers-2-jpg', 1246, 1800),
+  local('insta', 1800, 1800, 'Instagram illustration'),
+  local('kattenkwaat22', 1268, 1800, 'Kattenkwaad illustration'),
+  local('kikkersvoorinterent', 1800, 1524, 'Kikkers illustration'),
+  local('koffietcacao-nik', 1482, 1800, 'Koffie & Cacao illustration'),
+  local('koriander', 1800, 1800, 'Koriander illustration'),
+  local('krraks3voointernet', 1800, 1398, 'Krraks illustration'),
+  local('laatstebom22a', 1268, 1800, 'Laatste Bom illustration'),
+  local('leugenwedstrijd-kleeur', 1273, 1800, 'Leugenwedstrijd illustration'),
+  local('medusa5a', 1800, 1294, 'Medusa illustration'),
+  local('n-1-1', 1787, 1800, 'N illustration'),
+  local('papiaments-4', 1800, 1109, 'Papiaments illustration'),
+  local('paradiso', 1800, 1800, 'Paradiso illustration'),
+  local('raum-poster-nog-meer', 1280, 1800, 'Raum Poster illustration'),
+  local('republiek-test', 1440, 1800, 'Republiek illustration'),
+  local('restart', 1286, 1800, 'Restart illustration'),
+  local('s', 1463, 1508, 'S illustration'),
+  local('spook', 768, 768, 'Spook illustration'),
+  local('testpersoonhardhoofd', 1708, 1800, 'Hardhoofd illustration'),
+  local('the-brabanter3', 1800, 1800, 'The Brabanter illustration'),
+  local('voor-paulo', 1491, 1800, 'Voor Paulo illustration'),
+  local('voorinstaoo', 1800, 1800, 'Illustration'),
+  local('voorinternet-vuilnisman', 1770, 1800, 'Vuilnisman illustration'),
+  local('wolfworms-2-m-2', 1246, 1178, 'Wolfworms illustration'),
 ]
 
 export default function Home() {
   return (
-    <main className="mx-auto max-w-6xl px-6 pb-16">
+    <main className="mx-auto max-w-7xl px-6 pt-28 pb-16 md:pt-0">
       <ImageGrid images={illustrations} />
     </main>
   )

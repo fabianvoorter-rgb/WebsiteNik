@@ -1,30 +1,37 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 
 const navItems = [
-  { to: '/comics', label: 'Comics', icon: `${import.meta.env.BASE_URL}shop.png` },
+  { to: '/comics', label: 'Comics', icon: `${import.meta.env.BASE_URL}shop.webp` },
 ]
 
 const externalItems = [
-  { href: 'mailto:nikheemskerk@gmail.com', label: 'Contact', icon: `${import.meta.env.BASE_URL}contact.png` },
-  { href: 'https://www.instagram.com/nikheemskerk/', label: 'Instagram', icon: `${import.meta.env.BASE_URL}instagram.png`, external: true },
+  { href: 'mailto:nikheemskerk@gmail.com', label: 'Contact', icon: `${import.meta.env.BASE_URL}contact.webp` },
+  { href: 'https://www.instagram.com/nikheemskerk/', label: 'Instagram', icon: `${import.meta.env.BASE_URL}instagram.webp`, external: true },
 ]
 
-const iconClass = 'h-7 w-auto opacity-75 transition-all duration-200 hover:scale-105 hover:opacity-100'
+const iconClass = 'wiggle h-10 w-auto opacity-80 transition-opacity duration-200 hover:opacity-100'
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
 
+  // Mobile menu icons only mount when opened; load them up front so they don't appear late
+  useEffect(() => {
+    ;[...navItems, ...externalItems].forEach((item) => {
+      new Image().src = item.icon
+    })
+  }, [])
+
   return (
     <>
       <header className="fixed top-0 left-0 right-0 z-50 bg-cream/90 backdrop-blur-sm">
-        <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
+        <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
           <NavLink to="/" className="block" onClick={() => setOpen(false)}>
-            <img src={`${import.meta.env.BASE_URL}home.png`} alt="Nik Heemskerk" className="h-7 w-auto opacity-90 transition-all duration-200 hover:opacity-100" />
+            <img src={`${import.meta.env.BASE_URL}home.webp`} alt="Nik Heemskerk" width={595} height={120} className="wiggle h-10 w-auto opacity-90 transition-opacity duration-200 hover:opacity-100" />
           </NavLink>
 
           {/* Desktop nav */}
-          <ul className="hidden items-center gap-6 md:flex">
+          <ul className="hidden items-center gap-8 md:flex">
             {navItems.map((item) => (
               <li key={item.to}>
                 <NavLink to={item.to} className="block" onClick={() => setOpen(false)}>
@@ -55,12 +62,12 @@ export default function Navbar() {
           {/* Hamburger button */}
           <button
             onClick={() => setOpen((v) => !v)}
-            className="relative z-50 flex h-8 w-8 flex-col items-center justify-center gap-1.5 md:hidden"
+            className="relative z-50 flex h-11 w-11 flex-col items-center justify-center gap-2 md:hidden"
             aria-label="Toggle menu"
           >
-            <span className={`block h-0.5 w-5 bg-ink transition-all ${open ? 'translate-y-2 rotate-45' : ''}`} />
-            <span className={`block h-0.5 w-5 bg-ink transition-all ${open ? 'opacity-0' : ''}`} />
-            <span className={`block h-0.5 w-5 bg-ink transition-all ${open ? '-translate-y-2 -rotate-45' : ''}`} />
+            <span className={`block h-0.5 w-7 bg-ink transition-all ${open ? 'translate-y-2.5 rotate-45' : ''}`} />
+            <span className={`block h-0.5 w-7 bg-ink transition-all ${open ? 'opacity-0' : ''}`} />
+            <span className={`block h-0.5 w-7 bg-ink transition-all ${open ? '-translate-y-2.5 -rotate-45' : ''}`} />
           </button>
         </nav>
       </header>
@@ -75,7 +82,7 @@ export default function Navbar() {
                 <img
                   src={item.icon}
                   alt={item.label}
-                  className={`h-10 w-auto transition-all duration-200 ${isActive ? 'opacity-100' : 'opacity-80 hover:opacity-100'}`}
+                  className={`wiggle h-14 w-auto transition-opacity duration-200 ${isActive ? 'opacity-100' : 'opacity-80 hover:opacity-100'}`}
                 />
               )}
             </NavLink>
@@ -89,7 +96,7 @@ export default function Navbar() {
               className="block"
               onClick={() => setOpen(false)}
             >
-              <img src={item.icon} alt={item.label} className="h-10 w-auto opacity-80 transition-all duration-200 hover:opacity-100" />
+              <img src={item.icon} alt={item.label} className="wiggle h-14 w-auto opacity-80 transition-opacity duration-200 hover:opacity-100" />
             </a>
           ))}
         </div>
